@@ -1,11 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
-
+import { FaTimes } from "react-icons/fa";
+import { FaInfoCircle } from "react-icons/fa";
 export default function Home() {
   const [surah, setSurah] = useState(null);
   const [selectSurah, setSelectSurah] = useState("1"); // Default Surah: Al-Fatiha
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
+  const [selectedSurah, setSelectedSurah] = useState(null); // State for selected Surah
 
   const fetchSurah = async (surahNumber) => {
     setLoading(true);
@@ -34,6 +37,16 @@ export default function Home() {
 
   const handleSurahChange = (e) => {
     setSelectSurah(e.target.value);
+  };
+
+  const openModal = (surahData) => {
+    setSelectedSurah(surahData);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedSurah(null);
   };
 
   return (
@@ -76,10 +89,10 @@ export default function Home() {
               🍽️ 5. Al-Ma'idah (The Table Spread)
             </option>
             <option className="max-w-sm w-[20px]" value="6">
-              🐪 6. Al-An'am (The Cattle) 
+              🐪 6. Al-An'am (The Cattle)
             </option>
             <option className="max-w-sm w-[20px]" value="7">
-              ⛰️ 7. Al-A'raf (The Heights) 
+              ⛰️ 7. Al-A'raf (The Heights)
             </option>
             <option className="max-w-sm w-[20px]" value="8">
               ⚔️ 8. Al-Anfal (The Spoils of War)
@@ -94,118 +107,118 @@ export default function Home() {
               🌩️ 11. Hud (Hud)
             </option>
             <option className="max-w-sm w-[20px]" value="12">
-              👶 12. Yusuf (Joseph) 
+              👶 12. Yusuf (Joseph)
             </option>
             <option className="max-w-sm w-[20px]" value="13">
-              ⚡ 13. Ar-Rad (The Thunder) 
+              ⚡ 13. Ar-Rad (The Thunder)
             </option>
             <option className="max-w-sm w-[20px]" value="14">
-              🕊️ 14. Ibrahim (Abraham) 
+              🕊️ 14. Ibrahim (Abraham)
             </option>
             <option className="max-w-sm w-[20px]" value="15">
-              🪨 15. Al-Hijr (The Rocky Tract) 
+              🪨 15. Al-Hijr (The Rocky Tract)
             </option>
             <option className="max-w-sm w-[20px]" value="16">
-              🐝 16. An-Nahl (The Bee) 
+              🐝 16. An-Nahl (The Bee)
             </option>
             <option className="max-w-sm w-[20px]" value="17">
-              🌙 17. Al-Isra' (The Night Journey) 
+              🌙 17. Al-Isra' (The Night Journey)
             </option>
             <option className="max-w-sm w-[20px]" value="18">
-              🕳️ 18. Al-Kahf (The Cave) 
+              🕳️ 18. Al-Kahf (The Cave)
             </option>
             <option className="max-w-sm w-[20px]" value="19">
-              👩‍🍼 19. Maryam (Mary) 
+              👩‍🍼 19. Maryam (Mary)
             </option>
             <option className="max-w-sm w-[20px]" value="20">
-              📜 20. Ta-Ha (Ta-Ha) 
+              📜 20. Ta-Ha (Ta-Ha)
             </option>
             <option className="max-w-sm w-[20px]" value="21">
               📖 21. Al-Anbiya' (The Prophets)
             </option>
             <option className="max-w-sm w-[20px]" value="22">
-              🕋 22. Al-Hajj (The Pilgrimage) 
+              🕋 22. Al-Hajj (The Pilgrimage)
             </option>
             <option className="max-w-sm w-[20px]" value="23">
-              🙌 23. Al-Mu'minun (The Believers) 
+              🙌 23. Al-Mu'minun (The Believers)
             </option>
             <option className="max-w-sm w-[20px]" value="24">
-              💡 24. An-Nur (The Light) 
+              💡 24. An-Nur (The Light)
             </option>
             <option className="max-w-sm w-[20px]" value="25">
-              ⚖️ 25. Al-Furqan (The Criterion) 
+              ⚖️ 25. Al-Furqan (The Criterion)
             </option>
             <option className="max-w-sm w-[20px]" value="26">
-              🎤 26. Ash-Shu'ara' (The Poets) 
+              🎤 26. Ash-Shu'ara' (The Poets)
             </option>
             <option className="max-w-sm w-[20px]" value="27">
-              🐜 27. An-Naml (The Ant) 
+              🐜 27. An-Naml (The Ant)
             </option>
             <option className="max-w-sm w-[20px]" value="28">
               📚 28. Al-Qasas (The Stories)
             </option>
             <option className="max-w-sm w-[20px]" value="29">
-              🕷️ 29. Al-Ankabut (The Spider) 
+              🕷️ 29. Al-Ankabut (The Spider)
             </option>
             <option className="max-w-sm w-[20px]" value="30">
               🏛️ 30. Ar-Rum (The Romans)
             </option>
             <option className="max-w-sm w-[20px]" value="31">
-              📖 31. Luqman (Luqman) 
+              📖 31. Luqman (Luqman)
             </option>
             <option className="max-w-sm w-[20px]" value="32">
               🙇 32. As-Sajda (The Prostration)
             </option>
             <option className="max-w-sm w-[20px]" value="33">
-              ⚔️ 33. Al-Ahzab (The Combined Forces) 
+              ⚔️ 33. Al-Ahzab (The Combined Forces)
             </option>
             <option className="max-w-sm w-[20px]" value="34">
-              🌸 34. Saba' (Sheba) 
+              🌸 34. Saba' (Sheba)
             </option>
             <option className="max-w-sm w-[20px]" value="35">
-              🛠️ 35. Fatir (The Originator) 
+              🛠️ 35. Fatir (The Originator)
             </option>
             <option className="max-w-sm w-[20px]" value="36">
-              📖 36. Ya-Sin (Ya-Sin) 
+              📖 36. Ya-Sin (Ya-Sin)
             </option>
             <option className="max-w-sm w-[20px]" value="37">
               🛡️ 37. As-Saffat (Those who set the Ranks)
             </option>
             <option className="max-w-sm w-[20px]" value="38">
-              🅱️ 38. Sad (The Letter Sad) 
+              🅱️ 38. Sad (The Letter Sad)
             </option>
             <option className="max-w-sm w-[20px]" value="39">
-              🪖 39. Az-Zumar (The Troops) 
+              🪖 39. Az-Zumar (The Troops)
             </option>
             <option className="max-w-sm w-[20px]" value="40">
-              🤲 40. Ghafir (The Forgiver) 
+              🤲 40. Ghafir (The Forgiver)
             </option>
             <option className="max-w-sm w-[20px]" value="41">
-              📜 41. Fussilat (Explained in Detail) 
+              📜 41. Fussilat (Explained in Detail)
             </option>
             <option className="max-w-sm w-[20px]" value="42">
-              🗣️ 42. Ash-Shura (Consultation) 
+              🗣️ 42. Ash-Shura (Consultation)
             </option>
             <option className="max-w-sm w-[20px]" value="43">
-              💰 43. Az-Zukhruf (The Gold Adornments) 
+              💰 43. Az-Zukhruf (The Gold Adornments)
             </option>
             <option className="max-w-sm w-[20px]" value="44">
-              💨 44. Ad-Dukhan (The Smoke) 
+              💨 44. Ad-Dukhan (The Smoke)
             </option>
             <option className="max-w-sm w-[20px]" value="45">
-              🐊 45. Al-Jathiyah (The Crouching) 
+              🐊 45. Al-Jathiyah (The Crouching)
             </option>
             <option className="max-w-sm w-[20px]" value="46">
               ⛰️ 46. Al-Ahqaf (The Wind-Curved Sandhills)
             </option>
             <option className="max-w-sm w-[20px]" value="47">
-              🕋 47. Muhammad (Muhammad) 
+              🕋 47. Muhammad (Muhammad)
             </option>
             <option className="max-w-sm w-[20px]" value="48">
-              🏆 48. Al-Fath (The Victory) 
+              🏆 48. Al-Fath (The Victory)
             </option>
             <option className="max-w-sm w-[20px]" value="49">
-              🏠 49. Al-Hujurat (The Rooms) 
+              🏠 49. Al-Hujurat (The Rooms)
             </option>
             <option className="max-w-sm w-[20px]" value="50">
               🔤 50. Qaf (The Letter Qaf)
@@ -220,16 +233,16 @@ export default function Home() {
               🌟 53. An-Najm (The Star)
             </option>
             <option className="max-w-sm w-[20px]" value="54">
-              🌙 54. Al-Qamar (The Moon) 
+              🌙 54. Al-Qamar (The Moon)
             </option>
             <option className="max-w-sm w-[20px]" value="55">
               💖 55. Ar-Rahman (The Beneficent)
             </option>
             <option className="max-w-sm w-[20px]" value="56">
-              🌌 56. Al-Waqi'a (The Inevitable) 
+              🌌 56. Al-Waqi'a (The Inevitable)
             </option>
             <option className="max-w-sm w-[20px]" value="57">
-              🔩 57. Al-Hadid (The Iron) 
+              🔩 57. Al-Hadid (The Iron)
             </option>
             <option className="max-w-sm w-[20px]" value="58">
               👩‍⚖️ 58. Al-Mujadila (The Pleading Woman)
@@ -247,34 +260,34 @@ export default function Home() {
               🕌 62. Al-Jumu'ah (Friday)
             </option>
             <option className="max-w-sm w-[20px]" value="63">
-              🤥 63. Al-Munafiqun (The Hypocrites) 
+              🤥 63. Al-Munafiqun (The Hypocrites)
             </option>
             <option className="max-w-sm w-[20px]" value="64">
               🌪️ 64. At-Taghabun (Mutual Disillusion)
             </option>
             <option className="max-w-sm w-[20px]" value="65">
-              💔 65. At-Talaq (The Divorce) 
+              💔 65. At-Talaq (The Divorce)
             </option>
             <option className="max-w-sm w-[20px]" value="66">
               🚫 66. At-Tahrim (The Prohibition)
             </option>
             <option className="max-w-sm w-[20px]" value="67">
-              👑 67. Al-Mulk (The Sovereignty) 
+              👑 67. Al-Mulk (The Sovereignty)
             </option>
             <option className="max-w-sm w-[20px]" value="68">
-              🖋️ 68. Al-Qalam (The Pen) 
+              🖋️ 68. Al-Qalam (The Pen)
             </option>
             <option className="max-w-sm w-[20px]" value="69">
-              🔍 69. Al-Haqqah (The Reality) 
+              🔍 69. Al-Haqqah (The Reality)
             </option>
             <option className="max-w-sm w-[20px]" value="70">
               ⬆️ 70. Al-Ma'arij (The Ascending Stairways)
             </option>
             <option className="max-w-sm w-[20px]" value="71">
-              🌊 71. Nuh (Noah) 
+              🌊 71. Nuh (Noah)
             </option>
             <option className="max-w-sm w-[20px]" value="72">
-              👻 72. Al-Jinn (The Jinn) 
+              👻 72. Al-Jinn (The Jinn)
             </option>
             <option className="max-w-sm w-[20px]" value="73">
               🕵️‍♂️ 73. Al-Muzzammil (The Enshrouded One)
@@ -283,37 +296,37 @@ export default function Home() {
               🧕 74. Al-Muddathir (The Cloaked One)
             </option>
             <option className="max-w-sm w-[20px]" value="75">
-              🌅 75. Al-Qari'ah (The Calamity) 
+              🌅 75. Al-Qari'ah (The Calamity)
             </option>
             <option className="max-w-sm w-[20px]" value="76">
               🧑‍🤝‍🧑 76. Al-Infitar (The Splitting Open)
             </option>
             <option className="max-w-sm w-[20px]" value="77">
-              🎤 77. Al-Mutaffifin (Defrauding) 
+              🎤 77. Al-Mutaffifin (Defrauding)
             </option>
             <option className="max-w-sm w-[20px]" value="78">
               💫 78. Al-Inshiqaq (The Splitting Open)
             </option>
             <option className="max-w-sm w-[20px]" value="79">
-              🌪️ 79. Al-Buruj (The Mansions of the Stars) 
+              🌪️ 79. Al-Buruj (The Mansions of the Stars)
             </option>
             <option className="max-w-sm w-[20px]" value="80">
-              💥 80. At-Tariq (The Morning Star) 
+              💥 80. At-Tariq (The Morning Star)
             </option>
             <option className="max-w-sm w-[20px]" value="81">
               🌒 81. Al-A'la (The Most High)
             </option>
             <option className="max-w-sm w-[20px]" value="82">
-              🖋️ 82. Al-Ghashiya (The Overwhelming) 
+              🖋️ 82. Al-Ghashiya (The Overwhelming)
             </option>
             <option className="max-w-sm w-[20px]" value="83">
               🔥 83. Al-Fajr (The Dawn)
             </option>
             <option className="max-w-sm w-[20px]" value="84">
-              🍂 84. Al-Mutaffifin (Defrauding) 
+              🍂 84. Al-Mutaffifin (Defrauding)
             </option>
             <option className="max-w-sm w-[20px]" value="85">
-              📖 85. Al-Qamar (The Moon) 
+              📖 85. Al-Qamar (The Moon)
             </option>
             <option className="max-w-sm w-[20px]" value="86">
               📜 86. Al-Mulk (The Sovereignty)
@@ -322,13 +335,13 @@ export default function Home() {
               🌻 87. Al-A'la (The Most High)
             </option>
             <option className="max-w-sm w-[20px]" value="88">
-              🌞 88. Al-Ghashiya (The Overwhelming) 
+              🌞 88. Al-Ghashiya (The Overwhelming)
             </option>
             <option className="max-w-sm w-[20px]" value="89">
               🍃 89. Al-Fajr (The Dawn)
             </option>
             <option className="max-w-sm w-[20px]" value="90">
-              🌙 90. Al-Balad (The City) 
+              🌙 90. Al-Balad (The City)
             </option>
             <option className="max-w-sm w-[20px]" value="91">
               ☀️ 91. Ash-Shams (The Sun)
@@ -340,13 +353,13 @@ export default function Home() {
               🌟 93. Adh-Duha (The Morning Hours)
             </option>
             <option className="max-w-sm w-[20px]" value="94">
-              🪴 94. Ash-Sharh (The Relief) 
+              🪴 94. Ash-Sharh (The Relief)
             </option>
             <option className="max-w-sm w-[20px]" value="95">
               🌲 95. At-Tin (The Fig)
             </option>
             <option className="max-w-sm w-[20px]" value="96">
-              🖋️ 96. Al-Alaq (The Clot) 
+              🖋️ 96. Al-Alaq (The Clot)
             </option>
             <option className="max-w-sm w-[20px]" value="97">
               🌙 97. Al-Qadr (The Night of Decree)
@@ -355,10 +368,10 @@ export default function Home() {
               📖 98. Al-Bayyina (The Clear Proof)
             </option>
             <option className="max-w-sm w-[20px]" value="99">
-              🌱 99. Az-Zalzala (The Earthquake) 
+              🌱 99. Az-Zalzala (The Earthquake)
             </option>
             <option className="max-w-sm w-[20px]" value="100">
-              🌸 100. Al-Adiyat (The Courser) 
+              🌸 100. Al-Adiyat (The Courser)
             </option>
             <option className="max-w-sm w-[20px]" value="101">
               🌪️ 101. Al-Qari'ah (The Calamity)
@@ -370,16 +383,16 @@ export default function Home() {
               🌾 103. Al-Asr (The Declining Day)
             </option>
             <option className="max-w-sm w-[20px]" value="104">
-              📜 104. Al-Humazah (The Scorner) 
+              📜 104. Al-Humazah (The Scorner)
             </option>
             <option className="max-w-sm w-[20px]" value="105">
-              🛑 105. Al-Fil (The Elephant) 
+              🛑 105. Al-Fil (The Elephant)
             </option>
             <option className="max-w-sm w-[20px]" value="106">
-              🌍 106. Quraish (The Quraish) 
+              🌍 106. Quraish (The Quraish)
             </option>
             <option className="max-w-sm w-[20px]" value="107">
-              🎁 107. Al-Ma'un (The Small Kindnesses) 
+              🎁 107. Al-Ma'un (The Small Kindnesses)
             </option>
             <option className="max-w-sm w-[20px]" value="108">
               🎉 108. Al-Kawthar (The Abundance)
@@ -394,7 +407,7 @@ export default function Home() {
               🔥 111. Al-Masad (The Palm Fiber)
             </option>
             <option className="max-w-sm w-[20px]" value="112">
-              💔 112. Al-Ikhlas (The Sincerity) 
+              💔 112. Al-Ikhlas (The Sincerity)
             </option>
             <option className="max-w-sm w-[20px]" value="113">
               💨 113. Al-Falaq (The Daybreak)
@@ -412,8 +425,10 @@ export default function Home() {
           <p className="text-center text-red-500 font-semibold">{error}</p>
         )}
 
+        
+
         {surah && (
-          <div className="bg-white shadow-lg rounded-lg p-6 mx-auto max-w-3xl">
+          <div className="bg-white shadow-lg rounded-lg p-6 mx-auto max-w-3xl relative">
             <div className="text-center mb-6">
               <h2 className="text-2xl font-bold text-blue-600">
                 {surah.asma.en.long}
@@ -428,11 +443,16 @@ export default function Home() {
               >
                 {surah.asma.ar.long}
               </p>
+
+              <button
+          className="text-blue-500 absolute top-2 right-2 "
+          onClick={() => openModal(surah)} // Open modal on click
+        >
+          <FaInfoCircle className="w-6 h-6"/>
+        </button>
             </div>
 
             <div>
-            
-
               <div className="mb-6">
                 <audio
                   key={surah ? surah.recitation.full : ""}
@@ -472,6 +492,29 @@ export default function Home() {
           </div>
         )}
       </main>
+
+      {isModalOpen && selectedSurah && (
+        <div className="max-w-lg fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg max-w-md w-full relative">
+            <button
+              onClick={closeModal}
+              className="absolute top-2 right-2 text-red-500 text-2xl"
+            >
+              <FaTimes />
+            </button>
+            <h2 className="text-2xl font-bold text-blue-600">
+              {selectedSurah.asma.en.long}
+            </h2>
+            <p className="text-gray-600 italic">
+              ({selectedSurah.asma.translation.en})
+            </p>
+            <p className="text-gray-800 text-lg mt-2">
+              {selectedSurah.asma.ar.long}
+            </p>
+            <p className="text-gray-800 mt-4">{selectedSurah.meaning}</p>
+          </div>
+        </div>
+      )}
 
       <footer className="bg-blue-600 text-white text-center p-4 mt-10">
         <p>&copy; {new Date().getFullYear()} Quran Surah Explorer</p>
