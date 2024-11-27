@@ -494,8 +494,8 @@ export default function Home() {
       </main>
 
       {isModalOpen && selectedSurah && (
-        <div className="max-w-lg fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg max-w-md w-full relative">
+        <div className="max-w-full fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white grid place-items-center p-6 rounded-lg max-w-xs w-full relative">
             <button
               onClick={closeModal}
               className="absolute top-2 right-2 text-red-500 text-2xl"
@@ -505,11 +505,23 @@ export default function Home() {
             <h2 className="text-2xl font-bold text-blue-600">
               {selectedSurah.asma.en.long}
             </h2>
-            <p className="text-gray-600 italic">
+            <p className="text-gray-600 italic" >
               ({selectedSurah.asma.translation.en})
             </p>
-            <p className="text-gray-800 text-lg mt-2">
+            <p className="text-gray-800 text-2xl text-bold mt-2" style={{ fontFamily: "Amiri, serif" }}>
               {selectedSurah.asma.ar.long}
+            </p>
+            <p className="text-gray-800 text-lg mt-2">
+             Quran: {selectedSurah.number}
+            </p>
+            <p className="text-gray-800 text-lg mt-2">
+             No of verses: {selectedSurah.ayahCount}
+            </p>
+            <p className="text-gray-800 text-lg mt-2">
+             Reveled: {selectedSurah.type.en}
+            </p>
+            <p className="text-gray-800 text-lg mt-2">
+             tafsir: {selectedSurah.tafsir.en}
             </p>
             <p className="text-gray-800 mt-4">{selectedSurah.meaning}</p>
           </div>
